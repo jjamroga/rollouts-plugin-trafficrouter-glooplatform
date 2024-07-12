@@ -1,0 +1,28 @@
+apiVersion: networking.gloo.solo.io/v2
+kind: RouteTable
+metadata:
+  name: default
+  namespace: gloo-rollouts-subset
+  labels:
+    app: demo
+spec:
+  hosts:
+    - gloo-rollouts-subset.service.mesh
+  http:
+    - name: demo
+      matchers:
+        - uri:
+            prefix: /subset-demo
+      labels:
+        route: demo
+      forwardTo:
+        pathRewrite: /color
+        destinations:
+          - ref:
+              name: rollouts-app-destination
+              namespace: gloo-rollouts-subset
+            port:
+              number: 8080
+            subset:
+              version: stable
+            kind: VIRTUAL_DESTINATION

@@ -13,6 +13,10 @@ release:
 glooplatform-api-plugin-build:
 	CGO_ENABLED=0 GOOS=${GOOS} GOARCH=${GOARCH} go build -v -o ${DIST_DIR}/${BIN_NAME} .
 
+.PHONY: serve-local-release
+serve-local-release:
+	serve ./dist
+
 .PHONY: dev
 dev:
 	kubectl create ns argo-rollouts || true

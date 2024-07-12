@@ -1,3 +1,7 @@
+# IDEs
+.idea
 .vscode
+.run
+
 .DS_Store
 dist

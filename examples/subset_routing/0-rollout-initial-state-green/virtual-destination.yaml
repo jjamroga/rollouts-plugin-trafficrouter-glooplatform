@@ -1,0 +1,16 @@
+apiVersion: networking.gloo.solo.io/v2
+kind: VirtualDestination
+metadata:
+  name: rollouts-app-destination
+  namespace: gloo-rollouts-subset
+spec:
+  hosts:
+    - gloo-rollouts-subset.service.mesh
+  ports:
+    - number: 8080
+      protocol: HTTP
+      targetPort:
+        number: 8080
+  services:
+  - name: gloo-rollouts-demo
+    namespace: gloo-rollouts-subset

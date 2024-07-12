@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: gloo-rollouts-demo
+  namespace: gloo-rollouts-subset
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gloo-rollouts-demo
+  template:
+    metadata:
+      labels:
+        app: gloo-rollouts-demo
+    spec:
+      containers:
+      - image:  argoproj/rollouts-demo:green
+        imagePullPolicy: IfNotPresent
+        name: gloo-rollouts-demo
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+  strategy:
+    canary:
+      trafficRouting:
+        plugins:
+          solo-io/glooplatform:
+            routeTableSelector:
+              labels:
+                app: demo
+              namespace: gloo-rollouts-subset
+              stableSubsetSelector:
+                version: stable
+              canarySubsetSelector:
+                version: canary
+      steps:
+      - setWeight: 10
+      - pause: {}
+      - setWeight: 50
+      - pause: {}
+      - setWeight: 100

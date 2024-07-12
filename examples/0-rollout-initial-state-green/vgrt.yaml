@@ -45,7 +45,7 @@ spec:
     labels:
       route: demo
     forwardTo:
-      pathRewrite: /
+      pathRewrite: /color
       destinations:
       - ref:
           name: stable
