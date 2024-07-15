@@ -115,7 +115,7 @@ func (r *RpcPlugin) UpdateHash(rollout *v1alpha1.Rollout, canaryHash, stableHash
 	//	return pluginTypes.RpcError{}
 	//}
 	return pluginTypes.RpcError{
-		"Is this even getting called?",
+		ErrorString: "Is this even getting called?",
 	}
 	//ctx := context.TODO()
 	//glooPluginConfig, err := getPluginConfig(rollout)
@@ -134,8 +134,6 @@ func (r *RpcPlugin) UpdateHash(rollout *v1alpha1.Rollout, canaryHash, stableHash
 	//} else if rollout.Spec.Strategy.BlueGreen != nil {
 	//	return r.handleBlueGreen(rollout)
 	//}
-
-	return pluginTypes.RpcError{}
 }
 
 func (r *RpcPlugin) SetWeight(rollout *v1alpha1.Rollout, desiredWeight int32, additionalDestinations []v1alpha1.WeightDestination) pluginTypes.RpcError {
