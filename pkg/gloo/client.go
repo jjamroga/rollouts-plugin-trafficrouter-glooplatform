@@ -8,7 +8,18 @@ import (
 	networkv2 "github.com/solo-io/solo-apis/client-go/networking.gloo.solo.io/v2"
 	"k8s.io/apimachinery/pkg/runtime"
 	k8sclient "sigs.k8s.io/controller-runtime/pkg/client"
+	"strings"
 )
+
+type DumbObjectSelector struct {
+	Labels    map[string]string `json:"labels" protobuf:"bytes,1,name=labels"`
+	Name      string            `json:"name" protobuf:"bytes,2,name=name"`
+	Namespace string            `json:"namespace" protobuf:"bytes,3,name=namespace"`
+}
+
+func (d *DumbObjectSelector) IsNameEmpty() bool {
+	return strings.EqualFold(d.Name, "")
+}
 
 type networkV2Client struct {
 	routeTableClient *routeTableClient

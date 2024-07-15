@@ -1,16 +1,16 @@
 ---
-#apiVersion: v1
-#kind: Service
-#metadata:
-#  name: stable
-#  namespace: gloo-rollouts-subset
-#  labels:
-#    app: gloo-rollouts-demo
-#    service: gloo-rollouts-demo
-#spec:
-#  ports:
-#  - name: http
-#    port: 8080
-#    targetPort: 8080
-#  selector:
-#    app: gloo-rollouts-demo
+apiVersion: v1
+kind: Service
+metadata:
+  name: stable
+  namespace: gloo-rollouts-subset
+  labels:
+    app: gloo-rollouts-demo
+    service: gloo-rollouts-demo
+spec:
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: gloo-rollouts-demo

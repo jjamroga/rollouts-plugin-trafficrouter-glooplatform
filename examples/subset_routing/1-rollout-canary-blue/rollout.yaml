@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: gloo-rollouts-demo
-  namespace: gloo-rollouts-demo
+  namespace: gloo-rollouts-subset
 spec:
   replicas: 1
   selector:
@@ -18,7 +18,7 @@ spec:
         imagePullPolicy: IfNotPresent
         name: gloo-rollouts-demo
         ports:
-        - containerPort: 8080
+          - containerPort: 8080
         resources:
           limits:
             cpu: 100m
@@ -33,14 +33,14 @@ spec:
             routeTableSelector:
               labels:
                 app: demo
-              namespace: gloo-mesh
+              namespace: gloo-rollouts-subset
               stableSubsetSelector:
                 version: stable
               canarySubsetSelector:
                 version: canary
       steps:
-      - setWeight: 10
-      - pause: {}
-      - setWeight: 50
-      - pause: {}
-      - setWeight: 100
+        - setWeight: 10
+        - pause: {}
+        - setWeight: 50
+        - pause: {}
+        - setWeight: 100

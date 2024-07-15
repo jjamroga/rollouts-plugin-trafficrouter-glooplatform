@@ -25,6 +25,8 @@ spec:
             memory: 100Mi
   strategy:
     canary:
+      canaryService: canary
+      stableService: stable
       trafficRouting:
         plugins:
           solo-io/glooplatform:
