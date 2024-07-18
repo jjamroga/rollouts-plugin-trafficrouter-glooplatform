@@ -21,6 +21,10 @@ type GlooMockClient struct {
 	rtClient *glooMockRouteTableClient
 }
 
+func (c GlooMockClient) PatchRouteTable(ctx context.Context, original *gloov2.RouteTable, toPatch *gloov2.RouteTable, opts ...k8sclient.PatchOption) error {
+	return nil
+}
+
 func (c GlooMockClient) RouteTables() gloo.RouteTableClient {
 	return c.rtClient
 }

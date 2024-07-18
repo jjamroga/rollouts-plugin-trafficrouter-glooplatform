@@ -1,5 +1,3 @@
-
----
 apiVersion: networking.gloo.solo.io/v2
 kind: VirtualGateway
 metadata:
@@ -14,43 +12,3 @@ spec:
   - selector:
       labels:
         istio: ingressgateway
----
-apiVersion: networking.gloo.solo.io/v2
-kind: RouteTable
-metadata:
-  name: default
-  namespace: gloo-mesh
-  labels:
-    app: demo
-spec:
-  hosts:
-    - '*'
-  virtualGateways:
-    - name: ingress
-      namespace: gloo-mesh
-  http:
-  - name: sanity
-    matchers:
-      - uri:
-          prefix: /sanity
-    labels:
-      route: sanity
-    directResponse:
-      status: 200
-      body: "it's alive"
-  - name: demo
-    matchers:
-      - uri:
-          prefix: /demo
-    labels:
-      route: demo
-    forwardTo:
-      pathRewrite: /color
-      destinations:
-      - ref:
-          name: stable
-          namespace: gloo-rollouts-demo
-        port:
-          number: 8080
-        kind: SERVICE
-

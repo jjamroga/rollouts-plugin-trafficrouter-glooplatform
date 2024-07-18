@@ -11,6 +11,8 @@ import (
 	"strings"
 )
 
+//go:generate mockgen -source ./client.go -destination mocks/client.go
+
 type DumbObjectSelector struct {
 	Labels    map[string]string `json:"labels" protobuf:"bytes,1,name=labels"`
 	Name      string            `json:"name" protobuf:"bytes,2,name=name"`
@@ -25,8 +27,13 @@ type networkV2Client struct {
 	routeTableClient *routeTableClient
 }
 
+func (c networkV2Client) PatchRouteTable(ctx context.Context, original *networkv2.RouteTable, toPatch *networkv2.RouteTable, opts ...k8sclient.PatchOption) error {
+	return c.RouteTables().PatchRouteTable(ctx, original, k8sclient.MergeFrom(toPatch), opts...)
+}
+
 type NetworkV2ClientSet interface {
 	RouteTables() RouteTableClient
+	PatchRouteTable(ctx context.Context, original *networkv2.RouteTable, toPatch *networkv2.RouteTable, opts ...k8sclient.PatchOption) error
 }
 
 type RouteTableClient interface {

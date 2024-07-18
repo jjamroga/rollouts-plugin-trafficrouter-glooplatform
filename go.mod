@@ -7,13 +7,17 @@ require (
 	github.com/PaesslerAG/jsonpath v0.1.1
 	github.com/argoproj/argo-rollouts v1.5.1
 	github.com/ghodss/yaml v1.0.1-0.20190212211648-25d852aebe32
+	github.com/google/uuid v1.3.0
 	github.com/hashicorp/go-plugin v1.4.9
+	github.com/onsi/gomega v1.27.4
 	github.com/sirupsen/logrus v1.9.0
 	github.com/solo-io/solo-apis v1.6.32-0.20230623162622-377f95c0a7c7
 	github.com/stretchr/testify v1.8.2
+	go.uber.org/mock v0.4.0
 	k8s.io/apimachinery v0.26.4
 	k8s.io/client-go v11.0.1-0.20190805182717-6502b5e7b1b5+incompatible
 	sigs.k8s.io/controller-runtime v0.14.6
+	sigs.k8s.io/yaml v1.3.0
 )
 
 require (
@@ -38,7 +42,6 @@ require (
 	github.com/google/gnostic v0.6.9 // indirect
 	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/google/gofuzz v1.2.0 // indirect
-	github.com/google/uuid v1.3.0 // indirect
 	github.com/hashicorp/go-hclog v0.14.1 // indirect
 	github.com/hashicorp/yamux v0.0.0-20180604194846-3520598351bb // indirect
 	github.com/imdario/mergo v0.3.13 // indirect
@@ -90,7 +93,6 @@ require (
 	k8s.io/utils v0.0.0-20230406110748-d93618cff8a2 // indirect
 	sigs.k8s.io/json v0.0.0-20221116044647-bc3834ca7abd // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.2.3 // indirect
-	sigs.k8s.io/yaml v1.3.0 // indirect
 )
 
 replace (

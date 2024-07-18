@@ -12,5 +12,7 @@ spec:
       targetPort:
         number: 8080
   services:
-  - name: gloo-rollouts-demo
-    namespace: gloo-rollouts-subset
+    - labels:
+        app: gloo-rollouts-demo
+#  - name: gloo-rollouts-demo
+#    namespace: gloo-rollouts-subset
